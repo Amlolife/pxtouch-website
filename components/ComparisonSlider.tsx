@@ -75,7 +75,7 @@ const ComparisonSlider: React.FC<ComparisonSliderProps> = ({
   return (
     <div 
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden cursor-col-resize select-none bg-black group touch-none"
+      className="relative w-full h-full overflow-hidden cursor-col-resize select-none bg-black group touch-pan-y"
       onMouseMove={onMouseMove}
       onTouchMove={onTouchMove}
       onMouseDown={(e) => { handleMove(e.clientX); isDragging.current = true; }}
