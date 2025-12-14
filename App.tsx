@@ -1,9 +1,10 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-import { FEATURES, WORKFLOW_STEPS } from './constants';
-import { Download, Monitor, ArrowRight, Activity, Cpu, CheckCircle2, FileText } from 'lucide-react';
+import { WORKFLOW_STEPS } from './constants';
+import { Download, Monitor, Activity, Cpu, FileText } from 'lucide-react';
 
 const heroAfter = new URL('./hero-after.webp', import.meta.url).href;
+const upscaleImage = new URL('./Upscale.webp', import.meta.url).href;
 
 const Marquee: React.FC<{ text: string; reverse?: boolean }> = ({ text, reverse }) => (
   <div className="flex overflow-hidden py-4 border-y border-white/10 bg-black relative z-20">
@@ -196,42 +197,11 @@ const App: React.FC = () => {
           </div>
 
           <div className="relative h-[600px] w-full border border-white/10 rounded-xl overflow-hidden group">
-            <div className="absolute inset-0 grid grid-cols-2">
-              {/* Left Side: Pixelated */}
-              <div className="bg-black relative overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" 
-                  className="w-full h-full object-cover opacity-50 scale-150 blur-sm"
-                  alt="Low Res" 
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="bg-black/80 backdrop-blur text-white/50 px-4 py-2 font-mono text-xs border border-white/10">
-                     INPUT: 720p
-                   </div>
-                </div>
-              </div>
-
-              {/* Right Side: Sharp */}
-              <div className="bg-black relative overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=2800&auto=format&fit=crop" 
-                  className="w-full h-full object-cover"
-                  alt="High Res" 
-                />
-                 <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="bg-brand-500/90 text-white px-4 py-2 font-mono text-xs font-bold shadow-[0_0_20px_rgba(14,165,233,0.5)]">
-                     OUTPUT: 4K
-                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Divider */}
-            <div className="absolute top-0 bottom-0 left-1/2 w-px bg-brand-500/50 z-20 shadow-[0_0_15px_#0ea5e9]">
-               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black border border-brand-500 p-2 rounded-full">
-                  <Activity size={20} className="text-brand-500" />
-               </div>
-            </div>
+            <img 
+              src={upscaleImage} 
+              alt="Upscale Comparison" 
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
