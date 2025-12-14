@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
-import Button from './components/Button';
-import ComparisonSlider from './components/ComparisonSlider';
 import { FEATURES, WORKFLOW_STEPS } from './constants';
 import { Download, Monitor, ArrowRight, Activity, Cpu, CheckCircle2, FileText } from 'lucide-react';
 
-const heroBefore = new URL('./hero-before.webp', import.meta.url).href;
 const heroAfter = new URL('./hero-after.webp', import.meta.url).href;
 
 const Marquee: React.FC<{ text: string; reverse?: boolean }> = ({ text, reverse }) => (
@@ -60,68 +57,47 @@ const PricingTier: React.FC<{
 );
 
 const App: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scroll = `${totalScroll / windowHeight}`;
-      setScrollProgress(Number(scroll));
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="bg-black min-h-screen text-white selection:bg-accent selection:text-black overflow-x-hidden">
       <Navbar />
 
       {/* --- SECTION 1: IMMERSIVE HERO --- */}
-      <section className="relative h-screen w-full overflow-hidden flex flex-col">
+      <section className="relative h-screen w-full overflow-hidden flex flex-col justify-center items-center">
         
         {/* The Interaction Layer */}
         <div className="absolute inset-0 z-0">
-          <ComparisonSlider 
-            beforeImage={heroBefore}
-            afterImage={heroAfter}
-            simulateEnhancement={false}
+          <img 
+            src={heroAfter} 
+            alt="PXTouch Retouching" 
+            className="w-full h-full object-cover"
           />
+          {/* Gradient overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/10 to-black/90 pointer-events-none" />
         </div>
 
-        {/* The HUD Overlay */}
-        <div className="absolute inset-0 z-10 pointer-events-none p-6 md:p-12 flex flex-col justify-between">
-          
-          {/* Top Bar */}
-          <div className="flex justify-between items-start">
-             <div className="font-mono text-xs text-accent tracking-[0.2em] flex flex-col gap-1 bg-black/20 backdrop-blur-sm p-2 rounded border border-white/5">
-               <span>SYS.READY</span>
-               <span>MODELS: ANTA / ARYA / GATKA / RUDRA</span>
-             </div>
-             <div className="flex gap-2 bg-black/20 backdrop-blur-sm p-2 rounded items-center border border-white/5">
-                <div className="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></div>
-                <div className="font-mono text-xs text-white/80">LIVE_PREVIEW</div>
-             </div>
-          </div>
-
-          {/* Center Content */}
-          <div className="w-full text-center mix-blend-difference mt-[-10vh]">
-             <h1 className="text-[12vw] md:text-[14vw] leading-[0.8] font-black tracking-tighter text-white">
-               PXTOUCH
-             </h1>
-             <p className="mt-4 text-sm md:text-xl font-mono text-white tracking-widest uppercase">
-               The Quad-Core Retouching Engine.
-             </p>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="flex justify-between items-end">
-            <div className="hidden md:block w-48 text-xs font-mono text-white/80 leading-relaxed bg-black/20 backdrop-blur-sm p-2 rounded border border-white/5">
-              ACTIVE MODULES: <br/>
-              [A]nta . [A]rya . [G]atka . [R]udra<br/>
-              LATENCY: 12ms
-            </div>
-          </div>
+        {/* The Main Content */}
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto flex flex-col items-center">
+           <h1 className="text-6xl md:text-9xl font-black tracking-tighter text-white mb-6 drop-shadow-xl">
+             PXTOUCH
+           </h1>
+           <p className="text-lg md:text-2xl text-white/90 font-medium tracking-wide max-w-2xl mb-10 leading-relaxed drop-shadow-lg">
+             The Quad-Core Retouching Engine.
+           </p>
+           
+           <div className="flex flex-col md:flex-row gap-4">
+              <a 
+                href="#download"
+                className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-200 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]"
+              >
+                <Download className="w-5 h-5" /> Download Now
+              </a>
+              <a 
+                href="#pricing"
+                className="bg-black/30 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-black/50 transition-all"
+              >
+                View Pricing
+              </a>
+           </div>
         </div>
       </section>
 
